@@ -4,15 +4,20 @@ import webbrowser
 import sys
 import requests
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# API keys loaded from environment variables
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("BASE_URL")
+FORECAST_URL = os.getenv("FORECAST_URL")
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+NEWS_URL = os.getenv("NEWS_URL")
 
 app = Flask(__name__)
 
-# API keys
-API_KEY = "322e556b091f13c5d5b03fe7352e3b66"
-BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
-FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast?"
-NEWS_API_KEY = "1e40406dd6bb43269f3ce39ed86bfa06"
-NEWS_URL = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={NEWS_API_KEY}"
 
 def get_weather(city):
     url = f"{BASE_URL}q={city}&appid={API_KEY}&units=metric"
